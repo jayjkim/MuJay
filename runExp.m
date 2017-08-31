@@ -4,17 +4,18 @@
 % Date modified: 2017-08-30
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% ****************************************************
+% 1. Change saveDir to save response data files. 
+% 2. Change imageDir to where the images are saved. 
+% ****************************************************
+
+
 function runExp
 %% Subject ID
 % Copied from Julian's code
 subj.number = input('Enter subject number, 01-99:\n','s'); % '99'
 subj.initials = input('Enter subject initials:\n','s'); % 'JM'
 subj.level = input('Enter subject experience level (1,2 or 3):\n','s') % 1-3
-
-% Please type in the correct level
-while str2num(subj.level)>3||str2num(subj.level)<1
-    subj.level = input('Experience level should be be 1, 2 or 3:\n','s') % 1-3
-end
 
 
 %% Files and directories
@@ -24,7 +25,7 @@ imageDir = 'C:/Users/jayja/Documents/2017-02/Nao/snapshots/';
 
 % Read in image file names
 disp('Creating trials...')
-fileNames = dir(strcat(imageDir,'*.jpg'));
+fileNames = dir(strcat(imageDir,'*.jpg')); % Need to select which night######
 nFiles = length(fileNames);
 
 % Create a random order
@@ -72,7 +73,7 @@ Screen('TextFont', Exp.Cfg.win, 'Arial');
 
 %% Pentagon buttons layout //put into a func
 % Number of partitions within pentagon structure
-nPartition = 5; % 4 confidence levels + for text
+nPartition = 5; % 4 confidence levels + hollow centre
 
 % Diameter of the outer pentagon
 Exp.Cfg.rs = (winHor/2)*0.95; % Outermost diameter
