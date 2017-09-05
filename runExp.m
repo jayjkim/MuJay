@@ -224,9 +224,9 @@ end
 % Texts above and below; 'Sure' and 'Not sure' //may need to fix
 Screen('TextSize', Exp.Cfg.win, floor(barWidth/2));
 DrawFormattedText(Exp.Cfg.win, 'Sure', legendPos_x, ...
-    legendPos_y - barWidth/2, [0 0 0]);
+    legendPos_y - 5*barWidth/8, [0 0 0]);
 DrawFormattedText(Exp.Cfg.win, 'Not\nsure', legendPos_x, ...
-    legendPos_y + barLength + barWidth/4, [0 0 0]);
+    legendPos_y + barLength + barWidth/8, [0 0 0]);
 
 
 %% Pentagon region divisions; which levels/classes does the click belong to?
