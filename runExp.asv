@@ -272,13 +272,13 @@ subjectResponse = [];
 % such as file names, order of files presented, response and confidence. 
 % May need to clean up later to have less variables. 
 trial = []; % Subject trial results struct
-    % trial.number == Trial number
-    % trial.fileName == Name of the file presented in the trial
-    % trial.fileID == Alphabetical order of the file in the directory (may not need)
-    % trial.tStart == The time at which EEG image was presented
-    % trial.tDuration == Trial duration
-    % trial.response == Which sleep class was chosen
-    % trial.confidence == The confidence level
+    % trial.number = []; % Trial number
+    % trial.fileName = []; % Name of the file presented in the trial
+    % trial.fileID = []; % Alphabetical order of the file in the directory (may not need)
+    % trial.tStart = []; % The time at which EEG image was presented
+    % trial.tDuration = []; % Trial duration
+    % trial.response = []; % Which sleep class was chosen
+    % trial.confidence = []; % The confidence level
 
 for m = 1:nFiles 
     % Save trial number, file name and file ID
@@ -349,18 +349,18 @@ for m = 1:nFiles
         trial(m).tStart = GetSecs();
     end
     
-    stay = 1; % Initialise while loop condition variable
-    tmpMask = []; % Initialise temporary mask (for determining class/response)
-    confidenceLevel = 0; % Initialise confidence level
-    sleepClass = 0; % Initialise sleep class (==trial.response)
+    stay = 1;
+    tmpMask = [];
+    confidenceLevel = 0;
+    sleepClass = 0;
     while (stay)
         [click_x, click_y, buttons] = GetMouse(Exp.Cfg.win); 
         if buttons(1)
             if click_x<winHor && click_y<winVert && click_x>winHor/2 && ...
                     click_y>1 % This is to prevent out-of-bound index error
 				% Which confidence level
-                for i = 1:(nPartition-1)
-                    if confidenceMask{i}(round(click_y), round(click_x))
+				for i = 1:(nPartition-1)
+					if confidenceMask{i}(round(click_y), round(click_x))
 						confidenceLevel = i; % Trial confidence
                         
                         % Trial confidence
@@ -397,7 +397,7 @@ for m = 1:nFiles
 								orderMat(m,2), confidenceLevel, sleepClass];
                         end
 						break;
-                    end
+					end
                 end
             end
         end
